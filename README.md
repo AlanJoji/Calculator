@@ -5,5 +5,5 @@
 
 ## Description
 **Calculator Application**
-A Calculator application using Python. Implemented using Tkinter GUI.
+A calculator application using Python. Implemented using Tkinter GUI.
 
