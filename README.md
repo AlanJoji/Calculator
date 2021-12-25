@@ -4,6 +4,7 @@
 **Python**
 
 ## Description
-**Calculator Application** **Enter**
+**Calculator Application**
+--
 A calculator application using Python. Implemented using Tkinter GUI.
 
