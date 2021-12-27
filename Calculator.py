@@ -3,7 +3,7 @@
 #Modules 
 
 from tkinter import *
-
+from tkinter import messagebox
 
 #Functions
 
@@ -15,9 +15,11 @@ def button_click (value) :
     entry_box.insert(0, str(current_value) + str(value))
 
 def clear () :
+
     entry_box.delete(0, END)
 
 def add () :
+
     first_value = entry_box.get()
 
     entry_box.delete(0, END)
@@ -25,13 +27,71 @@ def add () :
     global first_number
     first_number = int(first_value)
 
+    global action 
+    action = 1
 
-def equal () :
-    second_number = int(entry_box.get())
+
+def subtract ():
+
+    first_value = entry_box.get()
 
     entry_box.delete(0, END)
 
-    entry_box.insert(0, first_number + second_number)
+    global first_number
+    first_number = int(first_value)
+
+    global action
+    action = 2
+
+
+def multiplication ():
+
+    first_value = entry_box.get()
+
+    entry_box.delete(0, END)
+
+    global first_number
+    first_number = int(first_value)
+
+    global action
+    action = 3
+
+
+def division ():
+
+    first_value = entry_box.get()
+
+    entry_box.delete(0, END)
+
+    global first_number
+    first_number = int(first_value)
+
+    global action
+    action = 4
+
+
+def equal () :
+
+    second_number = int(entry_box.get())
+    entry_box.delete(0, END)
+
+    if (action == 1) :
+        entry_box.insert(0, first_number + second_number)
+
+    elif (action == 2) :
+        entry_box.insert(0, first_number - second_number)
+    
+    elif (action == 3) :
+        entry_box.insert(0, first_number * second_number)
+    
+    elif (action == 4) :
+
+        if (second_number == 0) :
+            entry_box.insert(0, 0)
+            messagebox.showinfo("Error", "Divide by 0 Error")
+        
+        else :
+            entry_box.insert(0, first_number / second_number)
 
 
 
@@ -59,9 +119,12 @@ def calculator () :
     button_9 = Button(window, text="9", padx=40, pady=20, command=lambda : button_click(9))
 
     button_additon = Button(window, text="+", padx=39, pady=20, command=add)
+    button_subtract = Button(window, text="-", padx=39, pady=20, command=subtract)
+    button_multiplication = Button(window, text="x", padx=40, pady=20, command=multiplication)
+    button_division = Button(window, text="/", padx=41, pady=20, command=division)
+
     button_clear = Button(window, text="Clear", padx=84, pady=20, command=clear)
     button_equal = Button(window, text="=", padx=95, pady=20, command=equal)
-
 
 
     #Button Placement
@@ -80,8 +143,12 @@ def calculator () :
     button_0.grid(row=4, column=0)
 
     button_clear.grid(row=4, column=1, columnspan=2)
-    button_additon.grid(row=5, column=0)
     button_equal.grid(row=5, column=1, columnspan=2)
+
+    button_additon.grid(row=5, column=0)
+    button_subtract.grid(row=6, column=0)
+    button_multiplication.grid(row=6, column=1)
+    button_division.grid(row=6, column=2)
 
 
     window.mainloop()
